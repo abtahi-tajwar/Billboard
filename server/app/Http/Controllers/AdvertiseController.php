@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Advertise;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\URL;
 
 class AdvertiseController extends Controller
 {
     public function all() {
-        return Advertise::all();
+        $advertises =  Advertise::all();
+        foreach($advertises as $advertise) {
+            $advertise->Image = URL::to('/images/advertises').'/'.$advertise->Image;
+        }
+        return $advertises;
     }
     public function create(Request $req) {
 

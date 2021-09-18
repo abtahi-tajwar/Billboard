@@ -23,6 +23,9 @@ Route::post('login', [UserController::class, 'login']);
 Route::get('advertises', [AdvertiseController::class, 'all']);
 
 Route::group(['middleware' => ['api-auth']], function() {
+    Route::get('auth-test', function() {
+        return 'Authentication working';
+    });
     Route::post('advertise/create', [AdvertiseController::class, 'create']);
 });
 
